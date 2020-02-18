@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Core.TicketSupport.Domain.ValueObjects
+﻿namespace Core.TicketSupport.Domain.ValueObjects
 {
     public class Email
     {

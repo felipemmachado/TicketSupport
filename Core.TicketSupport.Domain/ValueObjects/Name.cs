@@ -1,7 +1,4 @@
 ﻿using Core.TicketSupport.Shared.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.TicketSupport.Domain.ValueObjects
 {

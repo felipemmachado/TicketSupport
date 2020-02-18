@@ -1,8 +1,5 @@
 ﻿using Core.TicketSupport.Domain.ValueObjects;
 using Core.TicketSupport.Shared.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.TicketSupport.Domain.Entities
 {
