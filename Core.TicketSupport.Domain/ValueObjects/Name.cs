@@ -12,8 +12,8 @@ namespace Core.TicketSupport.Domain.ValueObjects
 
             AddNotifications(new Contract()
                         .Requires()
-                        .HasMaxLen(firstName, 3, "firstName", "Primeiro nome obrigatório")
-                        .HasMaxLen(lastName, 3, "lastName", "sobrenome obrigatório"));
+                        .HasMinLen(FirstName, 3, "firstName", "Primeiro nome obrigatório")
+                        .HasMinLen(LastName, 3, "lastName", "sobrenome obrigatório"));
         }
 
         public string FirstName { get; private set; }

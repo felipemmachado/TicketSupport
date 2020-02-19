@@ -3,6 +3,7 @@ using Core.TicketSupport.Shared.Entities;
 using Flunt.Validations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.TicketSupport.Domain.Entities
 {
@@ -21,7 +22,7 @@ namespace Core.TicketSupport.Domain.Entities
             AddNotifications(client, 
                     new Contract()
                     .Requires()
-                    .IsNotNullOrWhiteSpace(Title, "Ticket.Title", "O título é obrigatório"));
+                    .HasMinLen(Title, 5, "Ticket.Title", "O título é obrigatório"));
         }
 
         public string Code { get; private set; }
@@ -34,7 +35,7 @@ namespace Core.TicketSupport.Domain.Entities
 
         public DateTime OpenDate { get; private set; }
 
-        public DateTime? CloseDate { get; private set; }
+        public DateTime? ConclusionDate { get; private set; }
 
         public DateTime? ForecastDate { get; private set; }
 
@@ -44,13 +45,46 @@ namespace Core.TicketSupport.Domain.Entities
 
         public InternalUser Responsable { get; private set; }
 
-        public IReadOnlyList<Historic> Historics { get; private set; }
+        public IReadOnlyList<Historic> Historics { get { return _historics.ToArray(); } }
 
         private IList<Historic> _historics { get; set; }
 
         public void AddHistoric(Historic historic)
         {
+            if (historic == null)
+                AddNotification("Ticket.Historic", "O histórico não pode ser null");
+
             _historics.Add(historic);
+        }
+
+        public void SetForecastDate(DateTime forecastDate)
+        {
+            if (forecastDate <= DateTime.UtcNow)
+                AddNotification("Ticket.ForecastDate", "A data de previsão não pode ser menor que agora");
+
+            ForecastDate = forecastDate;
+        }
+
+        public void ChangeStatus(ETicketStatusType ticketStaus)
+        {
+            Status = ticketStaus;
+        }
+
+        public void ChangeResponsable(InternalUser internalUser)
+        {
+
+            if (internalUser == null)
+                AddNotification("Ticket.Responsable", "O Responsável não pode ser null");
+
+            Responsable = internalUser;
+        }
+
+        public void Conclude(DateTime conclusionDate)
+        {
+            if (conclusionDate <=  DateTime.UtcNow)
+                AddNotification("Ticket.ForecastDate", "A data de conclusão não pode ser menor que agora");
+
+            ConclusionDate = conclusionDate;
         }
     }
 }

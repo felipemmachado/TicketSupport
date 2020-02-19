@@ -22,7 +22,7 @@ namespace Core.TicketSupport.Domain.Entities
                 client, 
                 new Contract()
                 .Requires()
-                .HasMaxLen(Description, 3, "Historic.Description", "A descrição não pode ser vazia.")
+                .HasMinLen(Description, 3, "Historic.Description", "A descrição não pode ser vazia.")
                 .IsNotNull(Interaction, "Historic.Interaction", "O tipo da interação é obrigatória."));
         }
 
