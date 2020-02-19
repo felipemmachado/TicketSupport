@@ -1,5 +1,6 @@
 ﻿using Core.TicketSupport.Domain.Enums;
 using Core.TicketSupport.Shared.Entities;
+using Flunt.Validations;
 using System;
 using System.Collections.Generic;
 
@@ -15,6 +16,12 @@ namespace Core.TicketSupport.Domain.Entities
             Client = client;
             OpenDate = DateTime.UtcNow;
             _historics = new List<Historic>();
+
+            // Adiciona as notificações de validação dos value Objects
+            AddNotifications(client, 
+                    new Contract()
+                    .Requires()
+                    .IsNotNullOrWhiteSpace(Title, "Ticket.Title", "O título é obrigatório"));
         }
 
         public string Code { get; private set; }
@@ -40,5 +47,10 @@ namespace Core.TicketSupport.Domain.Entities
         public IReadOnlyList<Historic> Historics { get; private set; }
 
         private IList<Historic> _historics { get; set; }
+
+        public void AddHistoric(Historic historic)
+        {
+            _historics.Add(historic);
+        }
     }
 }

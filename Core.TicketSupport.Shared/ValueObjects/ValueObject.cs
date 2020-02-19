@@ -1,6 +1,8 @@
-﻿namespace Core.TicketSupport.Shared.ValueObjects
+﻿using Flunt.Notifications;
+
+namespace Core.TicketSupport.Shared.ValueObjects
 {
-    public abstract class ValueObject
+    public abstract class ValueObject : Notifiable
     {
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Core.TicketSupport.Shared.ValueObjects;
+using Flunt.Validations;
 
 namespace Core.TicketSupport.Domain.ValueObjects
 {
@@ -8,6 +9,11 @@ namespace Core.TicketSupport.Domain.ValueObjects
         {
             FirstName = firstName;
             LastName = lastName;
+
+            AddNotifications(new Contract()
+                        .Requires()
+                        .HasMaxLen(firstName, 3, "firstName", "Primeiro nome obrigatório")
+                        .HasMaxLen(lastName, 3, "lastName", "sobrenome obrigatório"));
         }
 
         public string FirstName { get; private set; }

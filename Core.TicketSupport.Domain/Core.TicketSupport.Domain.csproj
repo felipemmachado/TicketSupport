@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Flunt" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Core.TicketSupport.Shared\Core.TicketSupport.Shared.csproj" />
   </ItemGroup>
 

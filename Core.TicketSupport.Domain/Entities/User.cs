@@ -9,6 +9,8 @@ namespace Core.TicketSupport.Domain.Entities
         {
             Name = name;
             Email = email;
+
+            AddNotifications(name, email);
         }
 
         public Name Name { get; private set; }
