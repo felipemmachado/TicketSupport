@@ -20,11 +20,13 @@ namespace Core.TicketSupport.Domain.Commands
         public string Description { get; set; }
         public ETicketStatusType Status { get; set; }
         public EPriorityType Priority { get; set; }
+        public int ClientId { get; set; }
 
         public void Validate()
         {
             AddNotifications(new Contract()
                         .Requires()
+                        .IsGreaterThan(ClientId, 0, "ClientId", "O Id do cliente é obrigatório")
                         .HasMinLen(ClientFirstName, 3, "ClientFirstName", "O nome deve conter pelo menos 3 caracteres.")
                         .HasMinLen(ClientLastName, 3, "ClientLastName", "O sobrenome deve conter pelo menos 3 caracteres.")
                         .IsEmailOrEmpty(ClientEmail, "ClientEmail", "O e-mail é obrigatório.")
@@ -36,7 +38,7 @@ namespace Core.TicketSupport.Domain.Commands
                         .HasMinLen(Description, 10, "Description", "A descrição deve conter pelo menos 10 caracteres.")
                         .IsNotNull(Status, "Status", "O status do ticket é obrigatório")
                         .IsNotNull(Priority, "Priority", "A prioridade do ticket é obrigatório")
-                        );
+                       );
         }
     }
 }

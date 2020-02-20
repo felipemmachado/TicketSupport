@@ -7,9 +7,9 @@ namespace Core.TicketSupport.Shared.Entities
     {
         public Entity()
         {
-            Id = new Guid();
+            Id = 0;
         }
 
-        public Guid Id { get; private set; }
+        public int Id { get; private set; }
     }
 }

@@ -24,6 +24,7 @@ namespace Core.TicketSupport.Tests.Commands
         {
             CreateTicketCommand command = new CreateTicketCommand
             {
+                
                 ClientFirstName = nome,
                 ClientLastName = sobrenome,
                 ClientEmail = email,
@@ -42,13 +43,16 @@ namespace Core.TicketSupport.Tests.Commands
 
         [Theory]
         [InlineData(
-            "Felipe", "Machado", 
+            1,
+            "Felipe", 
+            "Machado", 
             "felipemmachado28@gmail.com", "k238388h29", 
             "Grupo Mult", "31 9 85988217",
             "Ticket legal aberto",
             "Houve um erro muito foda, mas seus meninos são bons.",
             ETicketStatusType.Aberta, EPriorityType.Baixa)]
         public void DeveRetornarSucessoSeCommandValido(
+            int clientId,
             string nome,
             string sobrenome,
             string email,
@@ -63,6 +67,7 @@ namespace Core.TicketSupport.Tests.Commands
         {
             CreateTicketCommand command = new CreateTicketCommand
             {
+                ClientId = clientId,
                 ClientFirstName = nome,
                 ClientLastName = sobrenome,
                 ClientEmail = email,

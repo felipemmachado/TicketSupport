@@ -5,10 +5,11 @@ namespace Core.TicketSupport.Domain.Entities
 {
     public class ClientUser : User
     {
-        public ClientUser(Name name, Email email, string clienteToken, string company, string callNumber) 
+        public ClientUser(Name name, Email email, int clientId, string clientToken, string company, string callNumber) 
             : base(name, email)
         {
-            ClienteToken = clienteToken;
+            ClientToken = clientToken;
+            ClientId = clientId;
             Company = company;
             CallNumber = callNumber;
 
@@ -16,12 +17,15 @@ namespace Core.TicketSupport.Domain.Entities
 
             AddNotifications(new Contract()
                             .Requires()
-                            .IsNotNullOrWhiteSpace(ClienteToken, "ClientUser.ClienteToken", "o token do cliente é obrigatório")
+                            .IsGreaterThan(ClientId, 0, "ClientUser.ClientId", "O Id do Cliente é Obrigatório")
+                            .IsNotNullOrWhiteSpace(ClientToken, "ClientUser.ClientToken", "o token do cliente é obrigatório")
                             .IsNotNullOrWhiteSpace(Company, "ClientUser.Company", "O nome da empresa é obrigatório")
                             .IsNotNullOrWhiteSpace(CallNumber, "ClientUser.CallNumber", "O telefone é obrigatório"));
         }
 
-        public string ClienteToken { get; private set; }
+        public int ClientId { get; private set; }
+
+        public string ClientToken { get; private set; }
 
         public string Company { get; private set; }
 

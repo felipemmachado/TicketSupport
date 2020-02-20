@@ -23,8 +23,8 @@ namespace Core.TicketSupport.Tests.Entities
         {
             _nameClientUser = new Name("Felipe", "Machado");
             _emailClientUser = new Email("felipemmachado28@gmail.com");
-            _clientUser = new ClientUser(_nameClientUser, _emailClientUser, "kkhsaoskeeh", "Grupo Mult", "31985988217");
-            _ticket = new Ticket("title","Descrição do ticket", ETicketStatusType.Aberta, EPriorityType.Alta, _clientUser);
+            _clientUser = new ClientUser(_nameClientUser, _emailClientUser, 2, "kkhsaoskeeh", "Grupo Mult", "31985988217");
+            _ticket = new Ticket("00001-0", "title","Descrição do ticket", ETicketStatusType.Aberta, EPriorityType.Alta, _clientUser);
 
             _nameInternalUser = new Name("Felipe", "Machado");
             _emailInternalUser = new Email("felipe.machado@grupomult.com.br");

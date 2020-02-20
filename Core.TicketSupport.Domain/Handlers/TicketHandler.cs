@@ -40,12 +40,13 @@ namespace Core.TicketSupport.Domain.Handlers
             var emailClientUser = new Email(Commad.ClientEmail);
             var clientUser = new ClientUser(nameClientUser, 
                 emailClientUser, 
+                Commad.ClientId,
                 Commad.ClientToken, 
                 Commad.ClientCompany, 
                 Commad.ClientCallNumber);
 
             //gerar a entidade
-            var ticket = new Ticket(Commad.Title, Commad.Description, Commad.Status, Commad.Priority, clientUser);
+            var ticket = new Ticket("0009-0", Commad.Title, Commad.Description, Commad.Status, Commad.Priority, clientUser);
 
             // agrupar as validações
             AddNotifications(nameClientUser, emailClientUser, clientUser, ticket);

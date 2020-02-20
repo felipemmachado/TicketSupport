@@ -45,6 +45,7 @@ namespace Core.TicketSupport.Tests.Handlers
                 ClientCompany = "Grupo Mult",
                 ClientCallNumber = "31 9 85988217",
                 Title = "titulo",
+                ClientId = 1,
                 Description = "Descrição do ticket",
                 Status = ETicketStatusType.Aberta,
                 Priority = EPriorityType.Baixa,

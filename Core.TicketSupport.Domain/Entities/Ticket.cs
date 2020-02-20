@@ -9,8 +9,9 @@ namespace Core.TicketSupport.Domain.Entities
 {
     public class Ticket : Entity
     {
-        public Ticket(string title, string description, ETicketStatusType status, EPriorityType priority, ClientUser client)
+        public Ticket(string code, string title, string description, ETicketStatusType status, EPriorityType priority, ClientUser client)
         {
+            Code = code;
             Title = title;
             Description = description;
             Status = status;
@@ -23,36 +24,25 @@ namespace Core.TicketSupport.Domain.Entities
             AddNotifications(client, 
                     new Contract()
                     .Requires()
+                    .IsNotNullOrWhiteSpace(Code, "Ticket.Code", "O Código é obrigatório")
                     .HasMinLen(Title, 5, "Ticket.Title", "O título é obrigatório")
                     .HasMinLen(Description, 10, "Ticket.Description", "A descrição é obrigatório")
                     );
         }
 
         public string Code { get; private set; }
-
         public string Title { get; private set; }
         public string Description { get; private set; }
-
         public ETicketStatusType Status { get; private set; }
-
         public EPriorityType Priority { get; private set; }
-
         public DateTime OpenDate { get; private set; }
-
         public DateTime? ConclusionDate { get; private set; }
-
         public DateTime? ForecastDate { get; private set; }
-
         public DateTime? DevelopmentConclusionDate { get; private set; }
-
         public ClientUser Client { get; private set; }
-
         public InternalUser Responsable { get; private set; }
-
         public IReadOnlyList<Historic> Historics { get { return _historics.ToArray(); } }
-
         private IList<Historic> _historics { get; set; }
-
         public void AddHistoric(Historic historic)
         {
             if (historic == null)
