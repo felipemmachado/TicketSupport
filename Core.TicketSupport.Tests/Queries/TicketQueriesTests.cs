@@ -22,7 +22,7 @@ namespace Core.TicketSupport.Tests.Queries
                 var clientUser = new ClientUser(
                     new Name($"Felipe {i}", $"machado {i}"),
                     new Email($"felipemmachado2{i}@gmail.com"),
-                    i,
+                    1,
                     $"sjashdfaisdfha{i}",
                     $"MULT {i}",
                     $"3198598821{i}"
@@ -57,6 +57,24 @@ namespace Core.TicketSupport.Tests.Queries
         {
             var exp = TicketQueries.GetTicketByCode(codigo);
             var ticket = _tickets.AsQueryable().Where(exp).FirstOrDefault();
+
+            Assert.NotNull(ticket);
+        }
+
+        [Fact]
+        public void DeveRetornarNullQuandoNaoTiverClientId()
+        {
+            var exp = TicketQueries.GetTicketByClientId(3);
+            var ticket = _tickets.AsQueryable().Where(exp).LastOrDefault();
+
+            Assert.Null(ticket);
+        }
+
+        [Fact]
+        public void DeveRetornarTicketsPorClientId()
+        {
+            var exp = TicketQueries.GetTicketByClientId(1);
+            var ticket = _tickets.AsQueryable().Where(exp).LastOrDefault();
 
             Assert.NotNull(ticket);
         }

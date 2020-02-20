@@ -25,7 +25,7 @@ namespace Core.TicketSupport.Domain.Handlers
                 return new CommadResult(false, "Não foi possível cadastrar um histórico");
             }
 
-            // recuperar o ticket para poder adicionar o histórico
+            // TODO recuperar o ticket para poder adicionar o histórico
 
 
             // salvar o ticket

@@ -59,7 +59,5 @@ namespace Core.TicketSupport.Domain.Handlers
             _ticketRepsitory.CreateTicket(ticket);
             return new CommadResult(true, "Ticket salvo com sucesso");
         }
-
-
     }
 }
