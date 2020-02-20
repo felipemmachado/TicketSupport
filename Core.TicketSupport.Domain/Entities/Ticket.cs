@@ -9,9 +9,10 @@ namespace Core.TicketSupport.Domain.Entities
 {
     public class Ticket : Entity
     {
-        public Ticket(string title, ETicketStatusType status, EPriorityType priority, ClientUser client)
+        public Ticket(string title, string description, ETicketStatusType status, EPriorityType priority, ClientUser client)
         {
             Title = title;
+            Description = description;
             Status = status;
             Priority = priority;
             Client = client;
@@ -22,12 +23,15 @@ namespace Core.TicketSupport.Domain.Entities
             AddNotifications(client, 
                     new Contract()
                     .Requires()
-                    .HasMinLen(Title, 5, "Ticket.Title", "O título é obrigatório"));
+                    .HasMinLen(Title, 5, "Ticket.Title", "O título é obrigatório")
+                    .HasMinLen(Description, 10, "Ticket.Description", "A descrição é obrigatório")
+                    );
         }
 
         public string Code { get; private set; }
 
         public string Title { get; private set; }
+        public string Description { get; private set; }
 
         public ETicketStatusType Status { get; private set; }
 

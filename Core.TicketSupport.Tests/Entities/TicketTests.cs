@@ -24,13 +24,13 @@ namespace Core.TicketSupport.Tests.Entities
             _nameClientUser = new Name("Felipe", "Machado");
             _emailClientUser = new Email("felipemmachado28@gmail.com");
             _clientUser = new ClientUser(_nameClientUser, _emailClientUser, "kkhsaoskeeh", "Grupo Mult", "31985988217");
-            _ticket = new Ticket("oluydf", ETicketStatusType.Aberta, EPriorityType.Alta, _clientUser);
+            _ticket = new Ticket("title","Descrição do ticket", ETicketStatusType.Aberta, EPriorityType.Alta, _clientUser);
 
             _nameInternalUser = new Name("Felipe", "Machado");
             _emailInternalUser = new Email("felipe.machado@grupomult.com.br");
 
             _internalUser = new InternalUser(_nameInternalUser, _emailInternalUser, EAccessLevelType.Analista);
-            _historic = new Historic(_internalUser, _clientUser, "O erro acontece quando eu clino no vai.", EHistoricInteractionType.Interação);
+            _historic = new Historic(_nameInternalUser, _emailInternalUser, "O erro acontece quando eu clino no vai.", EHistoricInteractionType.Interação);
         }
 
         [Theory]

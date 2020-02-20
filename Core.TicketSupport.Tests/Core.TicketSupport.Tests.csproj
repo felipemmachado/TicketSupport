@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Core.TicketSupport.Shared\Core.TicketSupport.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ValueObjects\" />
+  </ItemGroup>
+
 </Project>
